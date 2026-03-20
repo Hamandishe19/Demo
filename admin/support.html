@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support | KensitonDrive Admin</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#E63946', dark: '#111827', darker: '#030712', light: '#F3F4F6', bordercolor: '#1f2937' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin-style.css">
+    <script src="js/admin-auth.js"></script>
+</head>
+
+<body class="bg-darker text-light font-sans antialiased overflow-x-hidden">
+
+    <div class="admin-layout flex h-screen overflow-hidden">
+        <aside id="admin-sidebar" class="admin-sidebar shadow-2xl z-50 shrink-0">
+            <!-- Sidebar Header -->
+            <div class="h-[70px] flex items-center justify-between px-6 border-b border-gray-800">
+                <a href="index.html"
+                    class="font-heading text-xl font-bold tracking-tighter text-white flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-primary"></i><span>Kensiton<span
+                            class="text-primary">Admin</span></span>
+                </a>
+                <button onclick="toggleAdminSidebar()" class="lg:hidden text-gray-400 hover:text-white"><i
+                        class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <div class="flex-1 py-6 px-4 space-y-1">
+                <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Reports</p>
+                <a href="index.html"
+                    class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium"><i
+                        class="fa-solid fa-chart-pie w-5 text-center"></i> Dashboard</a>
+
+                <div class="mt-8 mb-2">
+                    <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Dealership</p>
+                    <a href="orders.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium"><i
+                            class="fa-solid fa-cart-shopping w-5 text-center"></i> Orders</a>
+                    <a href="products.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium mt-1"><i
+                            class="fa-solid fa-car w-5 text-center"></i> Inventory</a>
+                    <a href="support.html"
+                        class="sidebar-link active flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium mt-1"><i
+                            class="fa-solid fa-headset w-5 text-center"></i> Support</a>
+                </div>
+
+                <div data-role="super" class="mt-8 mb-2">
+                    <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Super Admin</p>
+                    <a href="finance.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium"><i
+                            class="fa-solid fa-money-bill-trend-up w-5 text-center"></i> Financial Control</a>
+                    <a href="users.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium mt-1"><i
+                            class="fa-solid fa-users w-5 text-center"></i> User Management</a>
+                    <a href="settings.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium mt-1"><i
+                            class="fa-solid fa-sliders w-5 text-center"></i> Global Settings</a>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-gray-800">
+                <button onclick="handleAdminLogout()"
+                    class="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-red-500/10 hover:text-red-500 transition-colors"><i
+                        class="fa-solid fa-arrow-right-from-bracket w-5 text-center"></i> Sign Out</button>
+            </div>
+        </aside>
+
+        <!-- Main Content (Full height flex for chat UI) -->
+        <main class="admin-main flex-1 flex flex-col h-full bg-darker">
+
+            <header class="admin-header shrink-0 border-b border-gray-800">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleAdminSidebar()" class="lg:hidden text-gray-400 hover:text-white"><i
+                            class="fa-solid fa-bars text-xl"></i></button>
+                    <h1 class="font-heading text-xl font-bold text-white hidden sm:block">Customer Support Center</h1>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-3 border-l border-gray-700 pl-6 cursor-pointer">
+                        <div class="text-right hidden sm:block">
+                            <p id="admin-header-name" class="text-sm font-bold text-white leading-tight">Admin</p>
+                            <p id="admin-header-role" class="text-xs text-primary font-medium">Role</p>
+                        </div>
+                        <div id="admin-header-avatar"
+                            class="w-9 h-9 rounded-full bg-gray-800 border border-gray-600 flex items-center justify-center text-sm font-bold text-white shadow-sm">
+                            A</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Ticket System Layout -->
+            <div class="flex-1 flex overflow-hidden">
+                <!-- Ticket List (Sidebar) -->
+                <div class="w-full md:w-80 border-r border-gray-800 flex flex-col bg-dark shrink-0">
+                    <div class="p-4 border-b border-gray-800 flex gap-2">
+                        <button class="flex-1 bg-gray-800 text-white text-xs font-bold py-2 rounded-lg">Active
+                            (3)</button>
+                        <button
+                            class="flex-1 bg-transparent text-gray-400 border border-gray-800 hover:text-white text-xs font-bold py-2 rounded-lg transition-colors">Closed</button>
+                    </div>
+
+                    <div class="flex-1 overflow-y-auto" id="ticket-list">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Active Ticket View -->
+                <div class="hidden md:flex flex-1 flex-col bg-darker relative">
+                    <!-- Ticket Header -->
+                    <div class="p-6 border-b border-gray-800 bg-dark/50 flex justify-between items-center shrink-0">
+                        <div>
+                            <div class="flex items-center gap-3 mb-1">
+                                <h2 class="text-lg font-bold text-white leading-none">Finance Rates Inquiry</h2>
+                                <span class="badge badge-warning text-[10px] px-2 py-0.5">High Priority</span>
+                            </div>
+                            <p class="text-sm text-gray-400">Ticket #TKT-104 • <span
+                                    class="font-medium text-gray-300">Michael Ross</span> • Today</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button
+                                class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-1.5 rounded text-sm font-medium transition-colors">Transfer</button>
+                            <button
+                                class="bg-primary hover:bg-red-700 text-white px-3 py-1.5 rounded text-sm font-medium transition-colors">Close
+                                Ticket</button>
+                        </div>
+                    </div>
+
+                    <!-- Chat History -->
+                    <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                        <!-- Customer Msg -->
+                        <div class="flex gap-4 max-w-3xl">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-sm font-bold text-white shrink-0">
+                                MR</div>
+                            <div>
+                                <div class="bg-gray-800 rounded-2xl p-4 text-sm text-gray-300">
+                                    <p>Hello team, I am interested in purchasing the Porsche 911 GT3 RS. Could you
+                                        provide a breakdown of the current financing rates over 60 months with a 20%
+                                        down payment?</p>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-2 px-1">10:42 AM</p>
+                            </div>
+                        </div>
+
+                        <!-- System Note -->
+                        <div class="flex justify-center">
+                            <div
+                                class="bg-gray-800/50 border border-gray-700 text-gray-400 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-bold">
+                                Ticket Assigned to You</div>
+                        </div>
+
+                        <!-- Admin Reply -->
+                        <div class="flex gap-4 max-w-3xl ml-auto flex-row-reverse">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-sm font-bold text-white shrink-0">
+                                AD</div>
+                            <div>
+                                <div class="bg-primary/10 border border-primary/20 rounded-2xl p-4 text-sm text-white">
+                                    <p>Good morning Michael,</p>
+                                    <p class="mt-2">Thank you for your interest in the 911 GT3 RS. Our current premium
+                                        financing tier for 60 months sits at roughly 4.9% APR for approved tiers. If you
+                                        put 20% down ($49,000), you'd be financing $196,000.</p>
+                                    <p class="mt-2">Would you like me to send over a formal sheet with the exact monthly
+                                        breakdown including taxes?</p>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-2 px-1 text-right">10:55 AM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reply Box -->
+                    <div class="p-4 border-t border-gray-800 bg-dark shrink-0">
+                        <div class="relative">
+                            <textarea rows="3" placeholder="Type your reply here..."
+                                class="w-full bg-darker border border-gray-700 rounded-xl pl-4 pr-12 py-3 text-sm text-white focus:outline-none focus:border-primary resize-none"></textarea>
+                            <button
+                                class="absolute bottom-3 right-3 w-8 h-8 bg-primary rounded-lg text-white flex items-center justify-center hover:bg-red-700 transition">
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="flex justify-between items-center mt-2 px-1">
+                            <div class="flex gap-2 text-gray-500">
+                                <button class="hover:text-primary transition"><i
+                                        class="fa-solid fa-paperclip"></i></button>
+                                <button class="hover:text-primary transition"><i class="fa-solid fa-image"></i></button>
+                                <button class="hover:text-primary transition"><i
+                                        class="fa-solid fa-file-invoice-dollar"></i></button>
+                            </div>
+                            <span class="text-xs text-gray-500">Press Enter to send</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/admin-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ticketList = document.getElementById('ticket-list');
+            if (!ticketList) return;
+
+            ticketList.innerHTML = mockSupport.map((ticket, index) => {
+                const isActive = index === 0 ? 'bg-gray-800/50 border-l-4 border-l-primary' : 'border-b border-gray-800 hover:bg-gray-800/30';
+
+                let pBadge = '';
+                if (ticket.priority === 'High') pBadge = '<span class="w-2 h-2 rounded-full bg-red-500"></span>';
+                else if (ticket.priority === 'Medium') pBadge = '<span class="w-2 h-2 rounded-full bg-yellow-500"></span>';
+                else pBadge = '<span class="w-2 h-2 rounded-full bg-blue-500"></span>';
+
+                return `
+                    <div class="p-4 cursor-pointer transition-colors ${isActive}">
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="font-bold text-sm text-white truncate pr-2">${ticket.subject}</h4>
+                            ${pBadge}
+                        </div>
+                        <p class="text-xs text-gray-400 mb-2">${ticket.customer} • ${ticket.date}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-mono text-gray-500">${ticket.id}</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider ${ticket.status === 'Open' ? 'text-green-500' : 'text-gray-500'}">${ticket.status}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        });
+    </script>
+</body>
+
+</html>

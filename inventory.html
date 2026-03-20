@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory | KensitonDrive</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946', // Vibrant Red
+                        dark: '#111827',
+                        darker: '#030712',
+                        light: '#F3F4F6'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-darker text-light font-sans antialiased overflow-x-hidden pt-20">
+
+    <!-- Navigation (Same as index) -->
+    <nav class="fixed top-0 w-full z-50 bg-darker/95 border-b border-gray-800 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-heading text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-car-side text-primary text-3xl"></i>
+                        <span>Kensiton<span class="text-primary">Drive</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
+                    <a href="inventory.html" class="text-primary font-semibold transition-colors">Inventory</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white font-medium transition-colors">About
+                        Us</a>
+                    <a href="contact.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Contact</a>
+
+                    <a href="login.html" class="text-gray-300 hover:text-white transition-colors" title="Account">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+
+                    <a href="cart.html" class="relative text-gray-300 hover:text-white transition-colors group">
+                        <i class="fa-solid fa-cart-shopping text-xl group-hover:scale-110 transition-transform"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-5">
+                    <a href="login.html" class="text-gray-300 hover:text-white">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+                    <a href="cart.html" class="relative text-gray-300">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-dark border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Home</a>
+                <a href="inventory.html" class="block px-3 py-2 text-primary font-semibold">Inventory</a>
+                <a href="about.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">About Us</a>
+                <a href="contact.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-dark py-16 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">Our <span
+                    class="text-primary">Inventory</span></h1>
+            <p class="text-gray-400 max-w-2xl">Browse our complete collection of luxury, exotic, and high-performance
+                vehicles. Filter by make, category, or price to find your perfect match.</p>
+        </div>
+    </header>
+
+    <!-- Inventory Container -->
+    <section class="py-12 bg-darker min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+
+                <!-- Filters Sidebar -->
+                <aside class="w-full lg:w-64 flex-shrink-0">
+                    <div class="bg-dark rounded-xl border border-gray-800 p-6 sticky top-24">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold font-heading text-white">Filters</h3>
+                            <button id="reset-filters"
+                                class="text-sm text-gray-400 hover:text-primary transition-colors">Reset</button>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Search</label>
+                            <div class="relative">
+                                <i
+                                    class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                                <input type="text" id="search-input" placeholder="Make or model..."
+                                    class="w-full bg-gray-900 border border-gray-700 rounded-lg py-2 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                            </div>
+                        </div>
+
+                        <!-- Make -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Make</label>
+                            <select id="make-filter"
+                                class="w-full bg-gray-900 border border-gray-700 rounded-lg py-2 px-4 text-white focus:outline-none focus:border-primary transition-colors">
+                                <option value="all">All Makes</option>
+                                <option value="Porsche">Porsche</option>
+                                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                <option value="Audi">Audi</option>
+                                <option value="Lamborghini">Lamborghini</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Land Rover">Land Rover</option>
+                            </select>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Category</label>
+                            <select id="category-filter"
+                                class="w-full bg-gray-900 border border-gray-700 rounded-lg py-2 px-4 text-white focus:outline-none focus:border-primary transition-colors">
+                                <option value="all">All Categories</option>
+                                <option value="Sport">Sport</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Electric">Electric</option>
+                                <option value="Supercar">Supercar</option>
+                                <option value="Coupe">Coupe</option>
+                            </select>
+                        </div>
+
+                        <!-- Price Max -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Max Price</label>
+                            <input type="range" id="price-filter" min="4000" max="250000" step="1000" value="250000"
+                                class="w-full accent-primary">
+                            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                <span>$4k</span>
+                                <span id="price-val" class="font-bold text-gray-300">$250k+</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </aside>
+
+                <!-- Grid -->
+                <div class="flex-1">
+                    <div id="results-count" class="text-gray-400 mb-6 font-medium">Showing all vehicles</div>
+
+                    <div id="inventory-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Populated via inventory.js -->
+                    </div>
+
+                    <!-- No Results -->
+                    <div id="no-results" class="hidden text-center py-20">
+                        <i class="fa-solid fa-car-burst text-6xl text-gray-700 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-white mb-2">No vehicles found</h3>
+                        <p class="text-gray-400">Try adjusting your filters to find what you're looking for.</p>
+                        <button id="clear-filters-btn"
+                            class="mt-6 bg-primary hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors">
+                            Clear Filters
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark pt-10 pb-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="index.html"
+                class="inline-flex font-heading text-2xl font-bold tracking-tighter text-white items-center gap-2 mb-4">
+                <i class="fa-solid fa-car-side text-primary text-2xl"></i>
+                <span>Kensiton<span class="text-primary">Drive</span></span>
+            </a>
+            <p class="text-gray-500 text-sm">&copy; 2026 KensitonDrive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/inventory.js"></script>
+</body>
+
+</html>

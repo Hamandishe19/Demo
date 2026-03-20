@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | KensitonDrive</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946',
+                        dark: '#111827',
+                        darker: '#030712',
+                        light: '#F3F4F6',
+                        gold: '#D4AF37'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-darker text-light font-sans antialiased overflow-x-hidden pt-20">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-darker/95 border-b border-gray-800 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-heading text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-car-side text-primary text-3xl"></i>
+                        <span>Kensiton<span class="text-primary">Drive</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
+                    <a href="inventory.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Inventory</a>
+                    <a href="about.html" class="text-primary font-semibold transition-colors">About Us</a>
+                    <a href="contact.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Contact</a>
+
+                    <a href="login.html" class="text-gray-300 hover:text-white transition-colors" title="Account">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+
+                    <a href="cart.html" class="relative text-gray-300 hover:text-white transition-colors group">
+                        <i class="fa-solid fa-cart-shopping text-xl group-hover:scale-110 transition-transform"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-5">
+                    <a href="login.html" class="text-gray-300 hover:text-white">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+                    <a href="cart.html" class="relative text-gray-300">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-dark border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Home</a>
+                <a href="inventory.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Inventory</a>
+                <a href="about.html" class="block px-3 py-2 text-primary font-semibold">About Us</a>
+                <a href="contact.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="relative py-32 bg-dark flex items-center justify-center overflow-hidden border-b border-gray-800">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1562911791-c7a97b729ec5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                alt="Showroom" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-darker to-transparent"></div>
+        </div>
+        <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+            <h1 class="font-heading text-5xl md:text-7xl font-bold text-white mb-6">Redefining <span
+                    class="text-primary text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500">Luxury</span>
+            </h1>
+            <p class="text-xl text-gray-300">A passion for automotive excellence driving unparalleled service.</p>
+        </div>
+    </header>
+
+    <!-- Story Section -->
+    <section class="py-24 bg-darker">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h3 class="text-primary font-semibold tracking-wider uppercase mb-2">Our Story</h3>
+                    <h2 class="font-heading text-4xl font-bold text-white mb-6">Founded on Passion, Built on Trust.</h2>
+                    <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                        <p>Established in 2010, KensitonDrive began with a singular vision: to create an automotive
+                            sanctuary for enthusiasts and collectors. We recognized a gap in the luxury vehicle market—a
+                            need for an environment where the acquisition of an exotic car was as exceptional as the
+                            vehicle itself.</p>
+                        <p>Over the past decade, we have curated one of the most exclusive inventories in the world. Our
+                            deep industry relationships allow us to source rare, limited-edition models that are
+                            otherwise inaccessible.</p>
+                        <p>Today, KensitonDrive is more than a dealership; it is a global destination for those who demand
+                            the absolute best in design, performance, and engineering.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-primary/20 blur-2xl rounded-full"></div>
+                    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="KensitonDrive Showroom" class="relative rounded-2xl shadow-2xl border border-gray-800">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-24 bg-dark border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl font-bold text-white mb-4">Core Principles</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">The standards that guide every interaction, inspection, and
+                    delivery.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-darker p-8 text-center rounded-xl border border-gray-800">
+                    <i class="fa-solid fa-shield-halved text-4xl text-primary mb-6"></i>
+                    <h3 class="text-xl font-bold text-white font-heading mb-3">Integrity</h3>
+                    <p class="text-gray-400 text-sm">Transparency in pricing, vehicle history, and our inspection
+                        process. Trust is the foundation of our relationships.</p>
+                </div>
+                <div class="bg-darker p-8 text-center rounded-xl border border-gray-800">
+                    <i class="fa-solid fa-gem text-4xl text-primary mb-6"></i>
+                    <h3 class="text-xl font-bold text-white font-heading mb-3">Excellence</h3>
+                    <p class="text-gray-400 text-sm">We accept nothing less than perfection. Every vehicle must meet
+                        rigorous standards before entering our collection.</p>
+                </div>
+                <div class="bg-darker p-8 text-center rounded-xl border border-gray-800">
+                    <i class="fa-solid fa-handshake text-4xl text-primary mb-6"></i>
+                    <h3 class="text-xl font-bold text-white font-heading mb-3">Discretion</h3>
+                    <p class="text-gray-400 text-sm">We fiercely protect the privacy of our high-profile clients,
+                        ensuring secure and confidential transactions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darker pt-10 pb-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="index.html"
+                class="inline-flex font-heading text-2xl font-bold tracking-tighter text-white items-center gap-2 mb-4">
+                <i class="fa-solid fa-car-side text-primary text-2xl"></i>
+                <span>Kensiton<span class="text-primary">Drive</span></span>
+            </a>
+            <p class="text-gray-500 text-sm">&copy; 2026 KensitonDrive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

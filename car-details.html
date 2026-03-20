@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Details | KensitonDrive</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946',
+                        dark: '#111827',
+                        darker: '#030712',
+                        light: '#F3F4F6'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-darker text-light font-sans antialiased overflow-x-hidden pt-20">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-darker/95 border-b border-gray-800 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-heading text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-car-side text-primary text-3xl"></i>
+                        <span>Kensiton<span class="text-primary">Drive</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
+                    <a href="inventory.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Inventory</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white font-medium transition-colors">About
+                        Us</a>
+                    <a href="contact.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Contact</a>
+
+                    <a href="login.html" class="text-gray-300 hover:text-white transition-colors" title="Account">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+
+                    <a href="cart.html" class="relative text-gray-300 hover:text-white transition-colors group">
+                        <i class="fa-solid fa-cart-shopping text-xl group-hover:scale-110 transition-transform"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-5">
+                    <a href="login.html" class="text-gray-300 hover:text-white">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+                    <a href="cart.html" class="relative text-gray-300">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-dark border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Home</a>
+                <a href="inventory.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Inventory</a>
+                <a href="about.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">About Us</a>
+                <a href="contact.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Container -->
+    <main class="py-12 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <a href="inventory.html"
+                class="inline-flex items-center text-gray-400 hover:text-primary transition-colors mb-8 font-medium">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Inventory
+            </a>
+
+            <div id="loading" class="text-center py-20 hidden">
+                <i class="fa-solid fa-circle-notch fa-spin text-5xl text-primary mb-4"></i>
+                <p class="text-gray-400">Loading details...</p>
+            </div>
+
+            <div id="error-message" class="hidden text-center py-20">
+                <i class="fa-solid fa-triangle-exclamation text-6xl text-red-500 mb-4"></i>
+                <h2 class="font-heading text-3xl font-bold text-white mb-2">Vehicle Not Found</h2>
+                <p class="text-gray-400 mb-6">The vehicle you are looking for does not exist or has been removed.</p>
+                <a href="inventory.html"
+                    class="bg-primary hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold transition-colors">Browse
+                    Inventory</a>
+            </div>
+
+            <div id="car-details" class="hidden animate-fade-in">
+                <!-- Javascript will inject content here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark pt-10 pb-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="index.html"
+                class="inline-flex font-heading text-2xl font-bold tracking-tighter text-white items-center gap-2 mb-4">
+                <i class="fa-solid fa-car-side text-primary text-2xl"></i>
+                <span>Kensiton<span class="text-primary">Drive</span></span>
+            </a>
+            <p class="text-gray-500 text-sm">&copy; 2026 KensitonDrive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/car-details.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | KensitonDrive</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946',
+                        dark: '#111827',
+                        darker: '#030712',
+                        light: '#F3F4F6'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-darker text-light font-sans antialiased overflow-x-hidden pt-20">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-darker/95 border-b border-gray-800 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-heading text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-car-side text-primary text-3xl"></i>
+                        <span>Kensiton<span class="text-primary">Drive</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
+                    <a href="inventory.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Inventory</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white font-medium transition-colors">About
+                        Us</a>
+                    <a href="contact.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Contact</a>
+
+                    <a href="login.html" class="text-primary hover:text-red-400 transition-colors" title="Account">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+
+                    <a href="cart.html" class="relative text-gray-300 hover:text-white transition-colors group"
+                        title="Cart">
+                        <i class="fa-solid fa-cart-shopping text-xl group-hover:scale-110 transition-transform"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-5">
+                    <a href="login.html" class="text-primary">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+                    <a href="cart.html" class="relative text-gray-300">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-dark border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Home</a>
+                <a href="inventory.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Inventory</a>
+                <a href="about.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">About Us</a>
+                <a href="contact.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="relative min-h-[calc(100vh-80px)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0 bg-darker">
+            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                alt="Luxury Car Interior" class="w-full h-full object-cover">
+            <!-- Dark gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-darker/90 via-darker/70 to-darker/95"></div>
+        </div>
+
+        <!-- Glassy Card -->
+        <div class="relative z-10 w-full max-w-md animate-fade-in">
+            <!-- Glass container -->
+            <div
+                class="bg-dark/40 backdrop-blur-2xl border border-white/10 shadow-2xl rounded-3xl p-8 sm:p-10 overflow-hidden relative">
+
+                <!-- Glow effect behind content in the card -->
+                <div
+                    class="absolute -top-24 -right-24 w-60 h-60 bg-primary/20 rounded-full blur-3xl pointer-events-none">
+                </div>
+                <div
+                    class="absolute -bottom-24 -left-24 w-60 h-60 bg-primary/10 rounded-full blur-3xl pointer-events-none">
+                </div>
+
+                <div class="text-center mb-8 relative z-10">
+                    <h2 id="form-title" class="font-heading text-3xl font-bold text-white mb-2 tracking-tight">Welcome
+                        Back</h2>
+                    <p id="form-subtitle" class="text-gray-400 text-sm">Sign in to access your saved vehicles and
+                        exclusive member benefits.</p>
+                </div>
+
+                <!-- Login Form -->
+                <form id="auth-form" onsubmit="handleAuth(event)" class="space-y-6 relative z-10">
+
+                    <div id="name-field" class="hidden">
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                        <div class="relative">
+                            <i
+                                class="fa-solid fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                            <input type="text" placeholder="John Doe"
+                                class="w-full bg-darker/60 border border-gray-700/50 rounded-xl py-3 pl-11 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all backdrop-blur-md">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                        <div class="relative">
+                            <i
+                                class="fa-solid fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                            <input type="email" required placeholder="name@example.com"
+                                class="w-full bg-darker/60 border border-gray-700/50 rounded-xl py-3 pl-11 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all backdrop-blur-md">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-sm font-medium text-gray-300">Password</label>
+                            <a href="#" class="text-xs text-primary hover:text-red-400 transition-colors"
+                                id="forgot-password">Forgot password?</a>
+                        </div>
+                        <div class="relative">
+                            <i
+                                class="fa-solid fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                            <input type="password" required placeholder="••••••••"
+                                class="w-full bg-darker/60 border border-gray-700/50 rounded-xl py-3 pl-11 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all backdrop-blur-md">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center" id="remember-me-container">
+                        <input id="remember-me" type="checkbox"
+                            class="h-4 w-4 rounded border-gray-700 bg-darker/60 text-primary focus:ring-primary focus:ring-offset-gray-900 accent-primary cursor-pointer">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-400 cursor-pointer">Remember me for
+                            30 days</label>
+                    </div>
+
+                    <button type="submit" id="submit-btn"
+                        class="w-full bg-primary hover:bg-red-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-[0_0_20px_rgba(230,57,70,0.3)] hover:shadow-[0_0_30px_rgba(230,57,70,0.5)] transform hover:-translate-y-0.5">
+                        Sign In
+                    </button>
+
+                    <!-- Third-party login -->
+                    <div class="mt-6">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-700/50"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-3 bg-dark/40 text-gray-500 backdrop-blur-xl rounded-full">Or continue
+                                    with</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 grid grid-cols-2 gap-4">
+                            <button type="button"
+                                class="w-full flex items-center justify-center px-4 py-2.5 border border-gray-700/50 rounded-xl shadow-sm bg-darker/60 text-sm font-medium text-gray-300 hover:bg-gray-800 transition-colors backdrop-blur-md">
+                                <i class="fa-brands fa-google text-lg mr-2"></i>
+                                Google
+                            </button>
+                            <button type="button"
+                                class="w-full flex items-center justify-center px-4 py-2.5 border border-gray-700/50 rounded-xl shadow-sm bg-darker/60 text-sm font-medium text-gray-300 hover:bg-gray-800 transition-colors backdrop-blur-md">
+                                <i class="fa-brands fa-apple text-lg mr-2 text-white"></i>
+                                Apple
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <p class="mt-8 text-center text-sm text-gray-400 relative z-10">
+                    <span id="toggle-text">Not a member?</span>
+                    <button onclick="toggleAuthMode()" id="toggle-btn"
+                        class="font-semibold text-primary hover:text-red-400 transition-colors ml-1 focus:outline-none">Create
+                        an account</button>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let isLogin = true;
+
+        function handleAuth(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('name-field').querySelector('input');
+            const emailInput = document.querySelector('input[type="email"]');
+
+            const userData = {
+                name: isLogin ? (emailInput.value.split('@')[0]) : (nameInput.value || 'Client'),
+                email: emailInput.value
+            };
+
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+
+            const pendingStr = localStorage.getItem('intendedAction');
+            if (pendingStr) {
+                localStorage.removeItem('intendedAction');
+                try {
+                    const action = JSON.parse(pendingStr);
+                    if (action.action === 'addToCart' && typeof addToCart === 'function') {
+                        addToCart(action.carId);
+                        window.location.href = 'cart.html';
+                        return;
+                    } else if (action.action === 'testdrive') {
+                        window.location.href = `contact.html?interest=${action.carId}&type=testdrive`;
+                        return;
+                    }
+                } catch (e) { }
+            }
+
+            window.location.href = 'index.html';
+        }
+
+        function toggleAuthMode() {
+            isLogin = !isLogin;
+
+            const nameField = document.getElementById('name-field');
+            const nameInput = nameField.querySelector('input');
+            const title = document.getElementById('form-title');
+            const subtitle = document.getElementById('form-subtitle');
+            const submitBtn = document.getElementById('submit-btn');
+            const toggleText = document.getElementById('toggle-text');
+            const toggleBtn = document.getElementById('toggle-btn');
+            const forgotPassword = document.getElementById('forgot-password');
+            const rememberMeContainer = document.getElementById('remember-me-container');
+
+            if (isLogin) {
+                // Switch to Login
+                nameField.classList.add('hidden');
+                nameInput.removeAttribute('required');
+                title.textContent = 'Welcome Back';
+                subtitle.textContent = 'Sign in to access your saved vehicles and exclusive member benefits.';
+                submitBtn.textContent = 'Sign In';
+                toggleText.textContent = 'Not a member?';
+                toggleBtn.textContent = 'Create an account';
+                forgotPassword.classList.remove('hidden');
+                rememberMeContainer.classList.remove('hidden');
+            } else {
+                // Switch to Signup
+                nameField.classList.remove('hidden');
+                nameInput.setAttribute('required', 'true');
+                title.textContent = 'Create Account';
+                subtitle.textContent = 'Join KensitonDrive to save favorites and fast-track your exotic car acquisition.';
+                submitBtn.textContent = 'Create Account';
+                toggleText.textContent = 'Already have an account?';
+                toggleBtn.textContent = 'Sign in';
+                forgotPassword.classList.add('hidden');
+                rememberMeContainer.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>

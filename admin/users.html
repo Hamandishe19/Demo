@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management | KensitonDrive Admin</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#E63946', dark: '#111827', darker: '#030712', light: '#F3F4F6', bordercolor: '#1f2937' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin-style.css">
+    <script src="js/admin-auth.js"></script>
+</head>
+
+<body class="bg-darker text-light font-sans antialiased overflow-x-hidden">
+
+    <div class="admin-layout">
+        <!-- Sidebar Navigation (Same as index but active link changed) -->
+        <aside id="admin-sidebar" class="admin-sidebar shadow-2xl z-50">
+            <div class="h-[70px] flex items-center justify-between px-6 border-b border-gray-800">
+                <a href="index.html"
+                    class="font-heading text-xl font-bold tracking-tighter text-white flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-primary"></i><span>Kensiton<span
+                            class="text-primary">Admin</span></span>
+                </a>
+                <button onclick="toggleAdminSidebar()" class="lg:hidden text-gray-400 hover:text-white"><i
+                        class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <div class="flex-1 py-6 px-4 space-y-1">
+                <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Reports</p>
+                <a href="index.html"
+                    class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium"><i
+                        class="fa-solid fa-chart-pie w-5 text-center"></i> Dashboard</a>
+
+                <div class="mt-8 mb-2">
+                    <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Dealership</p>
+                    <a href="orders.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium"><i
+                            class="fa-solid fa-cart-shopping w-5 text-center"></i> Orders</a>
+                    <a href="products.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium mt-1"><i
+                            class="fa-solid fa-car w-5 text-center"></i> Inventory</a>
+                    <a href="support.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium mt-1"><i
+                            class="fa-solid fa-headset w-5 text-center"></i> Support</a>
+                </div>
+
+                <div data-role="super" class="mt-8 mb-2">
+                    <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Super Admin</p>
+                    <a href="finance.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium"><i
+                            class="fa-solid fa-money-bill-trend-up w-5 text-center"></i> Financial Control</a>
+                    <a href="users.html"
+                        class="sidebar-link active flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium mt-1"><i
+                            class="fa-solid fa-users w-5 text-center"></i> User Management</a>
+                    <a href="settings.html"
+                        class="sidebar-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium mt-1"><i
+                            class="fa-solid fa-sliders w-5 text-center"></i> Global Settings</a>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-gray-800">
+                <button onclick="handleAdminLogout()"
+                    class="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-red-500/10 hover:text-red-500 transition-colors"><i
+                        class="fa-solid fa-arrow-right-from-bracket w-5 text-center"></i> Sign Out</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Top Header -->
+            <header class="admin-header">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleAdminSidebar()" class="lg:hidden text-gray-400 hover:text-white"><i
+                            class="fa-solid fa-bars text-xl"></i></button>
+                </div>
+                <!-- Profile -->
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-3 border-l border-gray-700 pl-6 cursor-pointer">
+                        <div class="text-right hidden sm:block">
+                            <p id="admin-header-name" class="text-sm font-bold text-white leading-tight">Admin</p>
+                            <p id="admin-header-role" class="text-xs text-primary font-medium">Role</p>
+                        </div>
+                        <div id="admin-header-avatar"
+                            class="w-9 h-9 rounded-full bg-gray-800 border border-gray-600 flex items-center justify-center text-sm font-bold text-white shadow-sm">
+                            A</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="admin-content animate-fade-in">
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                    <div>
+                        <h1 class="font-heading text-3xl font-bold text-white">User Management</h1>
+                        <p class="text-gray-400 text-sm mt-1">Manage admin roles, customers, permissions and security
+                            settings.</p>
+                    </div>
+                    <button
+                        class="bg-primary hover:bg-red-700 text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-user-plus"></i> Add User / Admin
+                    </button>
+                </div>
+
+                <div class="glass-panel rounded-2xl overflow-hidden mb-8">
+                    <!-- Toolbar & Filters -->
+                    <div
+                        class="p-4 border-b border-gray-800 flex flex-col md:flex-row gap-4 justify-between items-center bg-dark/50">
+                        <div class="flex items-center gap-2 w-full md:w-auto">
+                            <div class="relative w-full md:w-64">
+                                <i
+                                    class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                                <input type="text" placeholder="Search users by name or email..."
+                                    class="w-full bg-darker border border-gray-700 text-white rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:border-primary">
+                            </div>
+                        </div>
+                        <div class="flex gap-2 w-full md:w-auto">
+                            <select
+                                class="bg-darker border border-gray-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary w-full md:w-auto">
+                                <option>All Roles</option>
+                                <option>Super Admin</option>
+                                <option>Regular Admin</option>
+                                <option>Customer</option>
+                            </select>
+                            <select
+                                class="bg-darker border border-gray-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary w-full md:w-auto">
+                                <option>All Statuses</option>
+                                <option>Active</option>
+                                <option>Suspended</option>
+                                <option>Banned</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="overflow-x-auto">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Role</th>
+                                    <th>Registered</th>
+                                    <th>Status</th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body">
+                                <!-- JS injected data -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination (Simulated) -->
+                    <div class="p-4 border-t border-gray-800 flex justify-between items-center text-sm text-gray-400">
+                        <span>Showing 1 to 4 of 120 users</span>
+                        <div class="flex gap-1">
+                            <button
+                                class="px-3 py-1 bg-darker border border-gray-700 rounded hover:text-white disabled:opacity-50">Prev</button>
+                            <button class="px-3 py-1 bg-primary text-white border border-primary rounded">1</button>
+                            <button
+                                class="px-3 py-1 bg-darker border border-gray-700 rounded hover:text-white">Next</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Log Section -->
+                <div>
+                    <h3 class="font-heading text-lg font-bold text-white mb-4">Recent Activity Logs</h3>
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                                <i class="fa-solid fa-key"></i></div>
+                            <div>
+                                <p class="text-sm text-white"><span class="font-bold">David Chen</span> changed password
+                                    for <span class="font-bold">John Doe</span></p>
+                                <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 pt-4 border-t border-gray-800">
+                            <div
+                                class="w-8 h-8 rounded-full bg-warning/20 flex items-center justify-center text-warning shrink-0">
+                                <i class="fa-solid fa-ban"></i></div>
+                            <div>
+                                <p class="text-sm text-white"><span class="font-bold">Jessica Vance</span> suspended
+                                    account <span class="font-bold">USR-0883</span></p>
+                                <p class="text-xs text-gray-500 mt-1">Yesterday, 4:15 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/admin-data.js"></script>
+    <script>
+        // Render Users Table
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.getElementById('users-table-body');
+            if (!tableBody) return;
+
+            tableBody.innerHTML = usersData.map(user => {
+                const initials = user.name.split(' ').map(n => n[0]).join('');
+                let statusBadge = '';
+                if (user.status === 'Active') statusBadge = '<span class="badge badge-success">Active</span>';
+                else if (user.status === 'Inactive') statusBadge = '<span class="badge badge-warning">Inactive</span>';
+                else statusBadge = '<span class="badge badge-danger">Banned</span>';
+
+                let roleColor = 'text-gray-400';
+                if (user.role.includes('Admin')) roleColor = 'text-primary font-bold';
+
+                return `
+                    <tr>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-sm font-bold text-white">${initials}</div>
+                                <div>
+                                    <div class="font-medium text-white">${user.name}</div>
+                                    <div class="text-xs text-gray-500">${user.email}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="${roleColor}">${user.role}</span></td>
+                        <td class="text-gray-400">${user.registered}</td>
+                        <td>${statusBadge}</td>
+                        <td class="text-right">
+                            <div class="flex items-center justify-end gap-2">
+                                <button class="w-8 h-8 rounded bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                <button class="w-8 h-8 rounded bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition" title="Reset Password"><i class="fa-solid fa-lock"></i></button>
+                                <button class="w-8 h-8 rounded bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white transition" title="Ban/Delete"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        });
+    </script>
+</body>
+
+</html>

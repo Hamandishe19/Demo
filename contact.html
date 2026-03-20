@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | KensitonDrive</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946',
+                        dark: '#111827',
+                        darker: '#030712',
+                        light: '#F3F4F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-darker text-light font-sans antialiased overflow-x-hidden pt-20">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-darker/95 border-b border-gray-800 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-heading text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-car-side text-primary text-3xl"></i>
+                        <span>Kensiton<span class="text-primary">Drive</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
+                    <a href="inventory.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Inventory</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white font-medium transition-colors">About
+                        Us</a>
+                    <a href="contact.html" class="text-primary font-semibold transition-colors">Contact</a>
+
+                    <a href="login.html" class="text-gray-300 hover:text-white transition-colors" title="Account">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+
+                    <a href="cart.html" class="relative text-gray-300 hover:text-white transition-colors group">
+                        <i class="fa-solid fa-cart-shopping text-xl group-hover:scale-110 transition-transform"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-5">
+                    <a href="login.html" class="text-gray-300 hover:text-white">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+                    <a href="cart.html" class="relative text-gray-300">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-dark border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Home</a>
+                <a href="inventory.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Inventory</a>
+                <a href="about.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">About Us</a>
+                <a href="contact.html" class="block px-3 py-2 text-primary font-semibold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-dark py-16 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">Contact <span
+                    class="text-primary">KensitonDrive</span></h1>
+            <p class="text-gray-400 max-w-2xl mx-auto">Our dedicated concierges are available to assist you with
+                inquiries, scheduling private viewings, or arranging secure transport.</p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section class="py-20 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+                <!-- Contact Info -->
+                <div>
+                    <h2 class="font-heading text-3xl font-bold text-white mb-8">Get in Touch</h2>
+
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <a href="https://maps.google.com/?q=100+Prestige+Way+Beverly+Hills+CA" target="_blank"
+                                class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0 border border-gray-800 hover:bg-primary transition-colors group">
+                                <i
+                                    class="fa-solid fa-location-dot text-primary group-hover:text-white transition-colors text-xl"></i>
+                            </a>
+                            <div>
+                                <h3 class="text-white font-bold mb-1">Showroom Location</h3>
+                                <p class="text-gray-400">King George<br>Harare<br>Zimbabwe
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <a href="tel:+18005555893"
+                                class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0 border border-gray-800 hover:bg-primary transition-colors group">
+                                <i
+                                    class="fa-solid fa-phone text-primary group-hover:text-white transition-colors text-xl"></i>
+                            </a>
+                            <div>
+                                <h3 class="text-white font-bold mb-1">Direct Line</h3>
+                                <p class="text-gray-400">+263 00 000 0000</p>
+                                <p class="text-gray-500 text-sm mt-1">Available 24/7 for VIP Clients</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <a href="mailto:concierge@Kensitondrive.com"
+                                class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0 border border-gray-800 hover:bg-primary transition-colors group">
+                                <i
+                                    class="fa-solid fa-envelope text-primary group-hover:text-white transition-colors text-xl"></i>
+                            </a>
+                            <div>
+                                <h3 class="text-white font-bold mb-1">Email</h3>
+                                <p class="text-gray-400">concierge@Kensitondrive.com</p>
+                                <p class="text-gray-500 text-sm mt-1">We respond within 2 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <a href="https://wa.me/18005555893" target="_blank"
+                                class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0 border border-gray-800 hover:bg-[#25D366] transition-colors group">
+                                <i
+                                    class="fa-brands fa-whatsapp text-primary group-hover:text-white transition-colors text-xl"></i>
+                            </a>
+                            <div>
+                                <h3 class="text-white font-bold mb-1">WhatsApp</h3>
+                                <p class="text-gray-400">Message Us on WhatsApp</p>
+                                <p class="text-gray-500 text-sm mt-1">Chat directly with our specialists</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-white font-bold mb-4">Hours of Operation</h3>
+                        <ul class="space-y-2 text-gray-400">
+                            <li class="flex justify-between border-b border-gray-800 pb-2"><span>Monday - Friday</span>
+                                <span>9:00 AM - 7:00 PM</span>
+                            </li>
+                            <li class="flex justify-between border-b border-gray-800 pb-2"><span>Saturday</span>
+                                <span>10:00 AM - 5:00 PM</span>
+                            </li>
+                            <li class="flex justify-between pb-2"><span>Sunday</span> <span>By Appointment Only</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-dark p-8 rounded-2xl border border-gray-800">
+                    <h3 class="font-heading text-2xl font-bold text-white mb-6">Send a Message</h3>
+                    <form
+                        onsubmit="event.preventDefault(); alert('Message sent successfully! Our concierge will contact you shortly.'); this.reset();"
+                        class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">First Name</label>
+                                <input type="text" required
+                                    class="w-full bg-gray-900 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Last Name</label>
+                                <input type="text" required
+                                    class="w-full bg-gray-900 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                            <input type="email" required
+                                class="w-full bg-gray-900 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Phone Number</label>
+                            <input type="tel"
+                                class="w-full bg-gray-900 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Inquiry Type</label>
+                            <select
+                                class="w-full bg-gray-900 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-primary transition-colors">
+                                <option>Vehicle Purchase</option>
+                                <option>Vehicle Sourcing</option>
+                                <option>Schedule Viewing</option>
+                                <option>General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                            <textarea rows="4" required
+                                class="w-full bg-gray-900 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-red-700 text-white font-bold py-4 rounded-xl transition-colors shadow-lg shadow-primary/20">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark pt-10 pb-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="index.html"
+                class="inline-flex font-heading text-2xl font-bold tracking-tighter text-white items-center gap-2 mb-4">
+                <i class="fa-solid fa-car-side text-primary text-2xl"></i>
+                <span>Kensiton<span class="text-primary">Drive</span></span>
+            </a>
+            <p class="text-gray-500 text-sm">&copy; 2026 KensitonDrive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Auto-fill car interest if param exists
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const carId = params.get('interest');
+            const type = params.get('type');
+            const currentUser = localStorage.getItem('currentUser');
+
+            if (type === 'testdrive') {
+                if (!currentUser && carId) {
+                    localStorage.setItem('intendedAction', JSON.stringify({ action: 'testdrive', carId: carId }));
+                    window.location.href = 'login.html';
+                    return;
+                }
+            }
+
+            if (carId) {
+                const car = cars.find(c => c.id === carId);
+                if (car) {
+                    const textarea = document.querySelector('textarea');
+                    const select = document.querySelector('select');
+                    if (type === 'testdrive') {
+                        textarea.value = `I would like to request a test drive for the ${car.year} ${car.make} ${car.model}. Please let me know when it is available to set up an appointment.`;
+                        if (select) select.value = 'Schedule Viewing';
+                    } else {
+                        textarea.value = `I am interested in the ${car.year} ${car.make} ${car.model}. Please provide more information.`;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

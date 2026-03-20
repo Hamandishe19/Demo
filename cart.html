@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | KensitonDrive</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946',
+                        dark: '#111827',
+                        darker: '#030712',
+                        light: '#F3F4F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-darker text-light font-sans antialiased overflow-x-hidden pt-20">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-darker/95 border-b border-gray-800 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-heading text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-car-side text-primary text-3xl"></i>
+                        <span>Kensiton<span class="text-primary">Drive</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
+                    <a href="inventory.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Inventory</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white font-medium transition-colors">About
+                        Us</a>
+                    <a href="contact.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Contact</a>
+
+                    <a href="login.html" class="text-gray-300 hover:text-white transition-colors" title="Account">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+
+                    <a href="cart.html" class="relative text-primary transition-colors group">
+                        <i class="fa-solid fa-cart-shopping text-xl group-hover:scale-110 transition-transform"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-5">
+                    <a href="login.html" class="text-gray-300 hover:text-white">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+                    <a href="cart.html" class="relative text-primary">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-dark py-12 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="font-heading text-4xl font-bold text-white mb-2">Shopping <span class="text-primary">Cart</span>
+            </h1>
+            <p class="text-gray-400">Review your selected vehicles before proceeding to secure checkout.</p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="py-16 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div id="empty-cart" class="hidden text-center py-20">
+                <i class="fa-solid fa-cart-arrow-down text-6xl text-gray-700 mb-6"></i>
+                <h2 class="font-heading text-3xl font-bold text-white mb-4">Your cart is empty</h2>
+                <p class="text-gray-400 mb-8">You have not selected any vehicles for acquisition yet.</p>
+                <a href="inventory.html"
+                    class="bg-primary hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-colors shadow-lg shadow-primary/20">
+                    Explore Our Collection
+                </a>
+            </div>
+
+            <div id="cart-content" class="grid grid-cols-1 lg:grid-cols-3 gap-10 hidden">
+
+                <!-- Items list -->
+                <div class="lg:col-span-2 space-y-6" id="cart-items">
+                    <!-- Populated via JS -->
+                </div>
+
+                <!-- Order Summary -->
+                <div class="lg:col-span-1">
+                    <div class="bg-dark rounded-xl border border-gray-800 p-6 sticky top-28">
+                        <h3 class="font-heading text-2xl font-bold text-white mb-6 border-b border-gray-800 pb-4">Order
+                            Summary</h3>
+
+                        <div class="space-y-4 mb-6 text-gray-400">
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span id="cart-subtotal" class="text-white">$0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Handling & Prep</span>
+                                <span class="text-white">$2,500</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Taxes</span>
+                                <span class="text-white">Calculated at checkout</span>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-800 pt-6 mb-8 flex justify-between items-center">
+                            <span class="font-bold text-lg text-white">Estimated Total</span>
+                            <span id="cart-total" class="font-bold text-2xl text-primary">$0</span>
+                        </div>
+
+                        <button onclick="processCheckout()"
+                            class="w-full bg-primary hover:bg-red-700 text-white font-bold py-4 rounded-xl transition-colors shadow-lg shadow-primary/30 flex justify-center items-center gap-2">
+                            <i class="fa-solid fa-lock"></i> Secure Checkout
+                        </button>
+
+                        <div class="mt-6 flex items-start gap-3 justify-center text-xs text-gray-500 text-center">
+                            <i class="fa-solid fa-shield-cat mt-0.5"></i>
+                            <p>Transactions are encrypted and secured via EV SSL. KensitonDrive requires wire transfer for
+                                final payment.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark pt-10 pb-10 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="index.html"
+                class="inline-flex font-heading text-2xl font-bold tracking-tighter text-white items-center gap-2 mb-4">
+                <i class="fa-solid fa-car-side text-primary text-2xl"></i>
+                <span>Kensiton<span class="text-primary">Drive</span></span>
+            </a>
+            <p class="text-gray-500 text-sm">&copy; 2026 KensitonDrive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>
